@@ -34,7 +34,7 @@ fn main() {
                     println!("Correct!\n")
                 } else {
                     streak = 0;
-                    println!("Nope.")
+                    println!("Nope. Correct answer was {answer}")
                 }
             }
             Err(_e) => {
@@ -47,25 +47,25 @@ fn main() {
 
 fn gen_question(nums: &[u32; 10], prefixes: &[&str; 5]) -> (String, u32) {
     let prefix: &str = prefixes.choose(&mut thread_rng()).unwrap();
-    //    let prefix_pow: u32 = power_from_prefix(prefix);
+    let prefix_pow: u32 = power_from_prefix(prefix);
     let num: u32 = *nums.choose(&mut thread_rng()).unwrap();
+
+    //dbg!(prefix, prefix_pow, num);
 
     let qst: String = format!("log {}{} = ", num, prefix);
 
-    let ans: u32 = 42;
+    let ans: u32 = prefix_pow + num.ilog2();
 
     (qst, ans)
 }
 
 fn power_from_prefix(prefix: &str) -> u32 {
-    todo!()
+    match prefix {
+        "" => 0u32,
+        "K" => 10u32,
+        "M" => 20u32,
+        "G" => 30u32,
+        "T" => 40u32,
+        _ => unreachable!(),
+    }
 }
-
-fn power_from_u32(num: u32) -> u32 {
-    todo!()
-}
-
-// struct GameState {
-//     streak: u32,
-//     currentQuestion: Question,
-// }
