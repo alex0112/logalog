@@ -9,4 +9,5 @@ channel = "stable-23_05"
 requiredFiles = [".replit"]
 
 [deployment]
-run = ["sh", "-c", "cargo run"]
+#run = ["sh", "-c", "cargo run"]
+run = "target/bin/logalog"
