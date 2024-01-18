@@ -37,7 +37,15 @@ fn quiz(nums: &[u32; 10], prefixes: &[&str; 5]) {
                     if user_ans == answer {
                         streak += 1;
                         println!("Correct!\n");
-                        continue 'new_question;
+                        if streak == 8 {
+                            println!("{streak} in a row CORRECT");
+                            io::stdout().flush().expect("Unable to flush output buffer");
+
+                            println!("Congrats! You win logarithms.");
+                            break 'new_question;
+                        } else {
+                            continue 'new_question;
+                        }
                     } else {
                         streak = 0;
                         println!("Nope. Correct answer was {answer}\n");
@@ -45,7 +53,7 @@ fn quiz(nums: &[u32; 10], prefixes: &[&str; 5]) {
                     }
                 }
                 Err(_e) => {
-                    println!("Please enter a valid number as your answer.");
+                    println!("Please provide an answer that falls within the set of the natural numbers (zero inclusive)");
                     continue 'input;
                 }
             }
