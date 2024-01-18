@@ -1,6 +1,6 @@
 hidden = ["target", ".cargo"]
 modules = ["rust-1.72:v1-20230911-f253fb1"]
-run = "cargo run"
+run = "target/bin/logalog"
 
 [nix]
 channel = "stable-23_05"
